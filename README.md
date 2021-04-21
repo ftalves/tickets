@@ -10,6 +10,8 @@ Featuring:
 - Ticket locking and timeouts
 
 Tech Standards:
-- Using Typescript
+- Typescript
+- NextJS for client
+- MongoDB, Redis for storage
 - Code sharing between services
 - Unit testing
