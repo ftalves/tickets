@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "minikube start && skaffold dev"
+    "start": "dotenv -- cross-var skaffold --default-repo=%GCLOUD_PROJECT_REPO% dev"
+  },
+  "devDependencies": {
+    "cross-var": "^1.1.0",
+    "dotenv": "^8.2.0",
+    "dotenv-cli": "^4.0.0"
   }
 }

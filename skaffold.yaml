@@ -5,10 +5,10 @@ deploy:
     manifests:
       - ./infra/*
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
   artifacts:
-    - image: ftalves/tickets-auth
+    - image: auth
       context: auth
       docker:
         dockerfile: Dockerfile
