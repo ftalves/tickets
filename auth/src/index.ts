@@ -1,4 +1,5 @@
 import 'module-alias/register';
+import 'express-async-errors';
 import express from 'express';
 import { json } from 'body-parser';
 
@@ -9,6 +10,7 @@ import {
   signOutRouter,
   signUpRouter,
 } from './routes';
+import { NotFoundError } from './errors';
 
 const app = express();
 app.use(json());
@@ -17,6 +19,10 @@ app.use(currentUserRouter);
 app.use(signInRouter);
 app.use(signOutRouter);
 app.use(signUpRouter);
+
+app.all('*', () => {
+  throw new NotFoundError();
+});
 
 app.use(errorHandler);
 
