@@ -1,37 +1,21 @@
-import { model, Schema } from 'mongoose';
+import { pre, prop, getModelForClass } from '@typegoose/typegoose';
 
 import { hash } from '@/helpers/password';
 
-interface UserAttrs {
-  email: string;
-  password: string;
-}
-
-const userSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-});
-userSchema.pre('save', async function (done) {
+@pre<UserClass>('save', async function () {
   if (this.isModified('password')) {
     const hashedPassword = await hash(this.get('password'));
     this.set('password', hashedPassword);
   }
+})
+class UserClass {
+  @prop()
+  public email: string;
 
-  done();
-});
-
-const UserModel = model('User', userSchema);
-
-class User extends UserModel {
-  constructor(attrs: UserAttrs) {
-    super(attrs);
-  }
+  @prop()
+  public password: string;
 }
+
+const User = getModelForClass(UserClass);
 
 export { User };
