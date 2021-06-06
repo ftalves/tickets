@@ -5,7 +5,7 @@ import { json } from 'body-parser';
 import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 
-import { errorHandler } from './middlewares';
+import { errorHandler, currentUser } from './middlewares';
 import {
   currentUserRouter,
   signInRouter,
@@ -25,6 +25,8 @@ app.use(
     secure: true,
   })
 );
+
+app.use(currentUser);
 
 app.use(currentUserRouter);
 app.use(signInRouter);
