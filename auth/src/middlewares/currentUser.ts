@@ -6,6 +6,7 @@ interface UserPayload {
   email: string;
 }
 
+// Merge with Express Request interface
 declare global {
   namespace Express {
     interface Request {
