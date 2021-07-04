@@ -15,3 +15,7 @@ Tech Standards:
 - MongoDB, Redis for storage
 - Code sharing between services
 - Unit testing
+
+Misc:
+- Increasing the number of notifiers (ENOSPC error):
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
