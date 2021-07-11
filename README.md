@@ -19,3 +19,6 @@ Tech Standards:
 Misc:
 - Increasing the number of notifiers (ENOSPC error):
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+Thoughts
+- --only=prod flag on Dockerfile: what's the best way to use it on dev?
