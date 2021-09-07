@@ -5,8 +5,8 @@ deploy:
     manifests:
       - ./infra/*
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
   artifacts:
     - image: auth
       context: auth

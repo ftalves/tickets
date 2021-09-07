@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "dotenv -- cross-var skaffold --default-repo=%GCLOUD_PROJECT_REPO% dev",
+    "start": "dotenv -- cross-var skaffold --default-repo=%PROJECT_REPO% dev",
+    "start:cloud": "dotenv -- cross-var skaffold --default-repo=%GCLOUD_PROJECT_REPO% dev",
     "secrets": "kubectl create secret generic secrets --from-env-file=.env.secret",
     "stop:nodes": "gcloud container clusters resize tickets-dev --num-nodes=0"
   },
