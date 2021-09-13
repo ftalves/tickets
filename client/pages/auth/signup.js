@@ -1,24 +1,26 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
+
+import { useRequest } from 'hooks';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
+  const { request, data, errors, loading } = useRequest();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post('/api/users/signup', {
-        email,
-        password,
-      });
-      setErrors([]);
-    } catch (err) {
-      setErrors(err.response.data);
-    }
+    request({
+      url: '/api/users/signup',
+      method: 'post',
+      body: { email, password },
+    });
   };
+
+  useEffect(() => {
+    if (data && !loading) {
+      alert('Signup success!');
+    }
+  }, [data, loading]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -34,7 +36,7 @@ const Signup = () => {
       <div className="form-group">
         <label>Password</label>
         <input
-          type="current-password"
+          type="password"
           className="form-control"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
