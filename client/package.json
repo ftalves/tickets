@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "next"
+    "start": "next",
+    "lint": "next lint"
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^11.1.2",
     "prettier": "^2.3.2"
   },
   "dependencies": {
