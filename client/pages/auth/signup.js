@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Router from 'next/router';
 
 import { useRequest } from 'hooks';
 
@@ -18,7 +19,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (data && !loading) {
-      alert('Signup success!');
+      Router.push('/');
     }
   }, [data, loading]);
 
