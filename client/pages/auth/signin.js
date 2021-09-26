@@ -1,0 +1,61 @@
+import { useState, useEffect } from 'react';
+import Router from 'next/router';
+
+import { useRequest } from 'hooks';
+
+const Signin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { request, data, errors, loading } = useRequest();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    request({
+      url: '/api/users/signin',
+      method: 'post',
+      body: { email, password },
+    });
+  };
+
+  useEffect(() => {
+    if (data && !loading) {
+      Router.push('/');
+    }
+  }, [data, loading]);
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h1>Sign In</h1>
+      <div className="form-group">
+        <label>Email Address</label>
+        <input
+          className="form-control"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          className="form-control"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button className="btn btn-primary">Sign In</button>
+      {errors.length ? (
+        <div className="alert alert-danger">
+          <h4>Ooops...</h4>
+          <ul className="my-0">
+            {errors.map((err) => (
+              <li key={err.msg}>{err.msg}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </form>
+  );
+};
+
+export default Signin;
