@@ -3,15 +3,14 @@ import 'express-async-errors';
 import express from 'express';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
+import { errorHandler, currentUser, NotFoundError } from '@ftickets/common';
 
-import { errorHandler, currentUser } from './middlewares';
 import {
   currentUserRouter,
   signInRouter,
   signOutRouter,
   signUpRouter,
 } from './routes';
-import { NotFoundError } from './errors';
 
 const app = express();
 
