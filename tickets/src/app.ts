@@ -5,6 +5,8 @@ import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { errorHandler, currentUser, NotFoundError } from '@ftickets/common';
 
+import { createTicketRouter } from '@/routes';
+
 const app = express();
 
 app.set('trust proxy', 1); // trust first proxy
@@ -18,6 +20,7 @@ app.use(
 );
 
 app.use(currentUser);
+app.use(createTicketRouter);
 
 app.all('*', () => {
   throw new NotFoundError();
