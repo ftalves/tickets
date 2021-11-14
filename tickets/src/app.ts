@@ -9,6 +9,7 @@ import {
   createTicketRouter,
   showTicketRouter,
   showAllTicketsRouter,
+  updateTicketRouter,
 } from '@/routes';
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(currentUser);
 app.use(createTicketRouter);
 app.use(showTicketRouter);
 app.use(showAllTicketsRouter);
+app.use(updateTicketRouter);
 
 app.all('*', () => {
   throw new NotFoundError();

@@ -1,8 +1,13 @@
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 
 // Returns a valid auth cookie for testing purposes
 export const signin = (
-  payload = { email: 'test@test.com', password: '1234' }
+  payload = {
+    id: mongoose.Types.ObjectId().toHexString(),
+    email: 'test@test.com',
+    password: '1234',
+  }
 ) => {
   const token = jwt.sign(payload, process.env.JWT_KEY!);
   const sessionJson = JSON.stringify({ jwt: token });
